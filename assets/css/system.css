@@ -1,0 +1,101 @@
+:root {
+    --brand: #3b82f6;
+    --brand-2: #14b8a6;
+    --dark-bg: #050505;
+    --dark-surface: #0f0f11;
+    --dark-border: rgba(255, 255, 255, 0.08);
+    --light-bg: #f7f7f8;
+    --light-surface: #ffffff;
+    --light-border: #e5e7eb;
+    --text-main: #0f172a;
+    --text-sub: #64748b;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html.dark ::-webkit-scrollbar {
+    width: 8px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+html.light ::-webkit-scrollbar {
+    width: 8px;
+}
+
+html.light ::-webkit-scrollbar-track {
+    background: var(--light-bg);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+    background: #cbd5f5;
+    border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+html.dark .glass-card {
+    background: rgba(20, 20, 20, 0.7);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #ffffff, #e2e8f0, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.text-gradient-primary {
+    background: linear-gradient(90deg, #60a5fa, #2dd4bf);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: all 700ms ease-out;
+}
+
+.reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

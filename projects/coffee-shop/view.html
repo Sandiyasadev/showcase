@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Demo Viewer - WebDev Pro</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#2563eb',
+                            hover: '#1d4ed8',
+                            light: '#3b82f6',
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet" />
+    
+    <style>
+        * { box-sizing: border-box; }
+        
+        /* Fix mobile browser viewport height */
+        html, body {
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height - adjusts for browser chrome */
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden;
+            overscroll-behavior: none;
+        }
+        
+        /* Scrollbar styles */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; }
+
+        /* ===== DESKTOP LAYOUT ===== */
+        
+        /* Clean, minimal frame - NO thick bezels */
+        .frame-outer {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+        .frame-inner {
+            overflow: hidden;
+            background: white;
+            border-radius: 12px;
+        }
+        #demo-frame-desktop {
+            border: none;
+            display: block;
+            background: white;
+            transform-origin: top left;
+        }
+
+        /* All devices use minimal styling - just subtle border */
+        .device-desktop .frame-outer,
+        .device-tablet .frame-outer,
+        .device-mobile .frame-outer {
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.08);
+            background: white;
+            padding: 0;
+        }
+        
+        .device-desktop .frame-inner,
+        .device-tablet .frame-inner,
+        .device-mobile .frame-inner { 
+            border-radius: 15px; 
+        }
+
+        /* ===== FAB (Floating Action Button) ===== */
+        
+        .fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4), 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 40;
+            border: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .fab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.5), 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .fab:active {
+            transform: scale(0.95);
+        }
+        
+        .fab .material-symbols-outlined {
+            color: white;
+            font-size: 28px;
+            transition: transform 0.3s ease;
+        }
+        
+        .fab.active .material-symbols-outlined {
+            transform: rotate(45deg);
+        }
+
+        /* Safe area for FAB on iOS */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .fab {
+                bottom: calc(24px + env(safe-area-inset-bottom));
+            }
+        }
+
+        /* ===== BOTTOM SHEET ===== */
+        
+        .bottom-sheet-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .bottom-sheet-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .bottom-sheet {
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .bottom-sheet.active {
+            transform: translateY(0);
+        }
+
+        /* ===== SIDEBAR (Desktop) ===== */
+        
+        .sidebar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar.collapsed {
+            transform: translateX(100%);
+            margin-right: -288px;
+        }
+
+        /* Device button active state */
+        .device-btn.active {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            color: #2563eb;
+        }
+
+        /* Loader */
+        .loader-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .loader-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Radio dot for theme selection */
+        .theme-radio:checked {
+            border-color: #2563eb;
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='rgb(37,99,235)' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='4'/%3e%3c/svg%3e");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-900 w-full overflow-hidden">
+
+    <!-- ============================================
+         MOBILE LAYOUT (< 768px) - FULL IMMERSIVE
+         ============================================ -->
+    <div id="mobile-layout" class="md:hidden h-full w-full relative">
+        
+        <!-- Full Screen Preview - 100% layar -->
+        <div class="absolute inset-0 bg-white">
+            <iframe id="demo-frame-mobile" src="" class="w-full h-full border-none"></iframe>
+        </div>
+        
+        <!-- Loading overlay -->
+        <div id="mobile-loader" class="loader-overlay absolute inset-0 bg-white flex items-center justify-center z-10">
+            <div class="flex flex-col items-center gap-3">
+                <div class="animate-spin rounded-full h-10 w-10 border-[3px] border-primary border-t-transparent"></div>
+                <span class="text-sm text-slate-500 font-medium">Loading preview...</span>
+            </div>
+        </div>
+
+        <!-- FAB (Floating Action Button) -->
+        <button id="fab-button" class="fab md:hidden" onclick="openBottomSheet()">
+            <span class="material-symbols-outlined">add</span>
+        </button>
+
+        <!-- Bottom Sheet Backdrop -->
+        <div id="sheet-backdrop" onclick="closeBottomSheet()" class="bottom-sheet-backdrop fixed inset-0 bg-black/60 backdrop-blur-sm z-40"></div>
+
+        <!-- Bottom Sheet Menu -->
+        <div id="bottom-sheet" class="bottom-sheet fixed bottom-0 left-0 right-0 z-50 flex flex-col bg-white rounded-t-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.2)]" style="max-height: 85vh;">
+            <!-- Handle -->
+            <div class="w-full flex justify-center pt-3 pb-2 cursor-grab">
+                <div class="h-1.5 w-12 rounded-full bg-gray-300"></div>
+            </div>
+            
+            <!-- Sheet Header with Category -->
+            <div class="px-5 pt-1 pb-4 border-b border-gray-100">
+                <h3 id="sheet-category-label" class="text-xl font-bold text-slate-900">Coffee Shop</h3>
+                <p class="text-sm text-slate-500 mt-1">Demo Preview Options</p>
+            </div>
+
+            <!-- Menu Actions -->
+            <div class="p-4 space-y-2">
+                <!-- Back to Product -->
+                <a href="index.html" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-colors group">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-200 text-slate-600 group-hover:bg-slate-300 transition-colors">
+                        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-semibold text-slate-900">Back to Product</p>
+                        <p class="text-sm text-slate-500">Return to product details</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400">chevron_right</span>
+                </a>
+
+                <!-- Order via WhatsApp -->
+                <a href="https://wa.me/6287848397507" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 transition-all group shadow-lg shadow-green-500/25">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20 text-white">
+                        <span class="material-symbols-outlined text-[24px]">chat</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-semibold text-white">Order via WhatsApp</p>
+                        <p class="text-sm text-white/80">Get this template now</p>
+                    </div>
+                    <span class="material-symbols-outlined text-white/80">open_in_new</span>
+                </a>
+            </div>
+
+            <!-- Divider -->
+            <div class="px-5 py-2">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Available Themes</p>
+            </div>
+
+            <!-- Theme List -->
+            <div id="mobile-theme-list" class="overflow-y-auto px-4 pb-4 flex-1 custom-scroll">
+                <!-- Themes injected via JS -->
+            </div>
+
+            <!-- Sheet Footer -->
+            <div class="border-t border-gray-100 bg-white p-4" style="padding-bottom: max(1rem, env(safe-area-inset-bottom));">
+                <button onclick="closeBottomSheet()" class="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold transition-colors active:scale-[0.98]">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                    <span>Close Menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         DESKTOP LAYOUT (>= 768px)
+         ============================================ -->
+    <div id="desktop-layout" class="hidden md:flex h-full w-full overflow-hidden">
+        
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col relative h-full min-w-0">
+            
+            <!-- Floating Control Bar -->
+            <header class="absolute top-0 left-0 right-0 z-30 flex justify-center pt-4 px-4 pointer-events-none">
+                <div class="pointer-events-auto rounded-2xl shadow-xl shadow-slate-300/50 px-4 py-2.5 flex items-center gap-4 max-w-3xl w-full justify-between bg-white/95 backdrop-blur-sm border border-slate-200/80">
+                    <!-- Left: Navigation -->
+                    <div class="flex items-center gap-3 min-w-0">
+                        <a href="index.html" class="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                            <span>Back</span>
+                        </a>
+                        <span class="text-slate-200 text-lg font-light">|</span>
+                        <span id="desktop-category-label" class="text-sm font-bold text-slate-800 truncate">Category</span>
+                    </div>
+
+                    <!-- Center: Device Switcher -->
+                    <div class="flex items-center bg-slate-100 p-1 rounded-xl">
+                        <button onclick="setDevice('desktop')" id="btn-desktop" class="device-btn active flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all">
+                            <span class="material-symbols-outlined text-[18px]">desktop_mac</span>
+                            <span>Desktop</span>
+                        </button>
+                        <button onclick="setDevice('tablet')" id="btn-tablet" class="device-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-700 text-xs font-medium transition-all">
+                            <span class="material-symbols-outlined text-[18px]">tablet_mac</span>
+                            <span>Tablet</span>
+                        </button>
+                        <button onclick="setDevice('mobile')" id="btn-mobile" class="device-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-700 text-xs font-medium transition-all">
+                            <span class="material-symbols-outlined text-[18px]">smartphone</span>
+                            <span>Mobile</span>
+                        </button>
+                    </div>
+
+                    <!-- Right: Actions -->
+                    <div class="flex items-center gap-1">
+                        <button onclick="toggleSidebar()" class="p-2 text-slate-400 hover:text-primary hover:bg-primary-50 rounded-lg transition-colors" title="Toggle Themes">
+                            <span class="material-symbols-outlined text-[20px]">palette</span>
+                        </button>
+                        <a href="index.html" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Close">
+                            <span class="material-symbols-outlined text-[20px]">close</span>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Viewport Container -->
+            <div class="flex-1 flex items-center justify-center p-6 pt-20 overflow-hidden bg-[radial-gradient(circle,#d1d5db_1px,transparent_1px)] [background-size:20px_20px]">
+                <div id="frame-container" class="device-desktop flex items-center justify-center w-full h-full">
+                    <div id="frame-outer" class="frame-outer">
+                        <div id="frame-inner" class="frame-inner">
+                            <iframe id="demo-frame-desktop" src=""></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Loading Overlay -->
+            <div id="desktop-loader" class="loader-overlay absolute inset-0 bg-slate-100/80 backdrop-blur-sm flex items-center justify-center z-20">
+                <div class="flex flex-col items-center gap-3 bg-white p-6 rounded-2xl shadow-lg">
+                    <div class="animate-spin rounded-full h-8 w-8 border-[3px] border-primary border-t-transparent"></div>
+                    <span class="text-sm text-slate-600 font-medium">Loading preview...</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Desktop Sidebar -->
+        <aside id="sidebar" class="sidebar w-72 h-full bg-white border-l border-slate-200 shadow-2xl z-20 flex flex-col flex-shrink-0">
+            <div class="p-5 border-b border-slate-100 flex justify-between items-center">
+                <h2 class="font-bold text-slate-800 text-lg">Themes</h2>
+                <button onclick="toggleSidebar()" class="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-5 space-y-4 custom-scroll">
+                <h3 class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Available Themes</h3>
+                <div id="desktop-theme-list" class="space-y-3">
+                    <!-- Themes injected via JS -->
+                </div>
+            </div>
+            <div class="p-5 border-t border-slate-100 bg-gradient-to-t from-slate-50 to-white">
+                <a href="https://wa.me/6287848397507" target="_blank" class="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-gradient-to-r from-primary to-primary-light hover:from-primary-hover hover:to-primary text-white rounded-xl font-bold transition-all shadow-lg shadow-primary/30 hover:shadow-primary/40 hover:-translate-y-0.5">
+                    <span>Order via WhatsApp</span>
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </a>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // DOM Elements
+        const iframeMobile = document.getElementById('demo-frame-mobile');
+        const iframeDesktop = document.getElementById('demo-frame-desktop');
+        const frameContainer = document.getElementById('frame-container');
+        const frameOuter = document.getElementById('frame-outer');
+        const frameInner = document.getElementById('frame-inner');
+        const sidebar = document.getElementById('sidebar');
+        const mobileLoader = document.getElementById('mobile-loader');
+        const desktopLoader = document.getElementById('desktop-loader');
+        const sheetBackdrop = document.getElementById('sheet-backdrop');
+        const bottomSheet = document.getElementById('bottom-sheet');
+
+        // Configuration
+        const demoCatalog = {
+            coffee: {
+                label: 'Coffee Shop',
+                themes: [
+                    { id: 'modern', label: 'Modern', subtitle: 'Clean lines and minimalist aesthetics', icon: 'design_services', path: './demo/modern.html' },
+                    { id: 'classic', label: 'Industrial', subtitle: 'Bold, raw materials, functional design', icon: 'precision_manufacturing', path: './demo/classic.html' },
+                ],
+            },
+            fashion: {
+                label: 'Fashion Store',
+                themes: [
+                    { id: 'minimal', label: 'Minimal', subtitle: 'Clean & Modern', icon: 'style', path: './demo/minimal.html' },
+                ],
+            },
+            architecture: {
+                label: 'Architecture Studio',
+                themes: [
+                    { id: 'portfolio', label: 'Portfolio', subtitle: 'Professional showcase', icon: 'architecture', path: './demo/portfolio.html' },
+                ],
+            },
+        };
+
+        const devicePresets = {
+            desktop: { width: 1440, height: 900 },
+            tablet:  { width: 768,  height: 1024 },
+            mobile:  { width: 375,  height: 812 },
+        };
+
+        // State
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentCategory = urlParams.get('category') || 'coffee';
+        if (!demoCatalog[currentCategory]) currentCategory = 'coffee';
+        
+        const availableThemes = demoCatalog[currentCategory].themes;
+        let currentTheme = urlParams.get('theme') || availableThemes[0].id;
+        let currentDevice = urlParams.get('device') || 'desktop';
+        let sidebarVisible = true;
+
+        // ===== URL Management =====
+        function updateUrl() {
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('category', currentCategory);
+            newUrl.searchParams.set('theme', currentTheme);
+            newUrl.searchParams.set('device', currentDevice);
+            window.history.replaceState({}, '', newUrl);
+        }
+
+        // ===== Theme Rendering =====
+        function renderMobileThemeList() {
+            const container = document.getElementById('mobile-theme-list');
+            container.innerHTML = '';
+            
+            availableThemes.forEach(theme => {
+                const isActive = theme.id === currentTheme;
+                const card = document.createElement('label');
+                card.className = `group relative flex items-start gap-4 rounded-2xl p-4 cursor-pointer transition-all mb-3 ${
+                    isActive 
+                        ? 'border-2 border-primary bg-primary/5' 
+                        : 'border border-slate-200 bg-white hover:border-slate-300'
+                }`;
+                card.innerHTML = `
+                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${isActive ? 'bg-primary/10 text-primary' : 'bg-slate-100 text-slate-500'}">
+                        <span class="material-symbols-outlined">${theme.icon || 'palette'}</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <p class="font-semibold text-slate-900">${theme.label}</p>
+                            <input type="radio" name="mobile-theme" value="${theme.id}" class="theme-radio h-5 w-5 border-2 border-slate-300 rounded-full appearance-none cursor-pointer" ${isActive ? 'checked' : ''}>
+                        </div>
+                        <p class="text-sm text-slate-500 mt-0.5 pr-6">${theme.subtitle}</p>
+                    </div>
+                `;
+                card.querySelector('input').addEventListener('change', () => {
+                    setTheme(theme.id);
+                    setTimeout(closeBottomSheet, 200);
+                });
+                container.appendChild(card);
+            });
+        }
+
+        function renderDesktopThemeList() {
+            const container = document.getElementById('desktop-theme-list');
+            container.innerHTML = '';
+            
+            availableThemes.forEach(theme => {
+                const isActive = theme.id === currentTheme;
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-4 rounded-xl border-2 transition-all duration-200 group ${
+                    isActive 
+                        ? 'bg-primary-50 border-primary shadow-sm shadow-primary/20' 
+                        : 'bg-white border-slate-200 hover:border-primary/40 hover:shadow-md'
+                }`;
+                btn.onclick = () => setTheme(theme.id);
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-sm ${isActive ? 'text-primary-700' : 'text-slate-700'}">${theme.label}</div>
+                            <div class="text-xs ${isActive ? 'text-primary-600' : 'text-slate-400'} font-medium mt-0.5">${theme.subtitle}</div>
+                        </div>
+                        ${isActive ? '<span class="material-symbols-outlined text-primary text-[22px]">check_circle</span>' : '<span class="material-symbols-outlined text-slate-300 text-[20px]">radio_button_unchecked</span>'}
+                    </div>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        // ===== Device Buttons (Desktop) =====
+        function updateDeviceButtons() {
+            ['desktop', 'tablet', 'mobile'].forEach(device => {
+                const btn = document.getElementById(`btn-${device}`);
+                if (!btn) return;
+                if (device === currentDevice) {
+                    btn.classList.add('active');
+                    btn.classList.remove('text-slate-500');
+                } else {
+                    btn.classList.remove('active');
+                    btn.classList.add('text-slate-500');
+                }
+            });
+        }
+
+        // ===== Theme & Device Setters =====
+        function setTheme(themeId) {
+            if (currentTheme === themeId) return;
+            currentTheme = themeId;
+            
+            showLoader();
+            
+            const theme = availableThemes.find(t => t.id === themeId);
+            if (theme) {
+                iframeMobile.src = theme.path;
+                iframeDesktop.src = theme.path;
+            }
+            
+            renderMobileThemeList();
+            renderDesktopThemeList();
+            updateUrl();
+        }
+
+        function setDevice(device) {
+            currentDevice = device;
+            frameContainer.className = `device-${device} flex items-center justify-center w-full h-full`;
+            updateFrameSize();
+            updateDeviceButtons();
+            updateUrl();
+        }
+
+        // ===== Desktop Frame Sizing (No bezel, maximized preview) =====
+        function updateFrameSize() {
+            const preset = devicePresets[currentDevice];
+            const viewportArea = document.querySelector('#desktop-layout .flex-1');
+            if (!viewportArea) return;
+            
+            // More space for preview - reduced padding
+            const availableWidth = viewportArea.clientWidth - 48;
+            const availableHeight = viewportArea.clientHeight - 80;
+            
+            // Direct scaling without bezel offset
+            const scaleX = availableWidth / preset.width;
+            const scaleY = availableHeight / preset.height;
+            const scale = Math.min(scaleX, scaleY, 1) * 0.95; // 95% for slight breathing room
+            
+            const innerWidth = preset.width * scale;
+            const innerHeight = preset.height * scale;
+            
+            frameInner.style.width = `${innerWidth}px`;
+            frameInner.style.height = `${innerHeight}px`;
+            
+            iframeDesktop.style.width = `${preset.width}px`;
+            iframeDesktop.style.height = `${preset.height}px`;
+            iframeDesktop.style.transform = `scale(${scale})`;
+        }
+
+        // ===== Bottom Sheet =====
+        function openBottomSheet() {
+            const fab = document.getElementById('fab-button');
+            sheetBackdrop.classList.add('active');
+            bottomSheet.classList.add('active');
+            if (fab) fab.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBottomSheet() {
+            const fab = document.getElementById('fab-button');
+            sheetBackdrop.classList.remove('active');
+            bottomSheet.classList.remove('active');
+            if (fab) fab.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ===== Sidebar (Desktop) =====
+        function toggleSidebar() {
+            sidebarVisible = !sidebarVisible;
+            sidebar.classList.toggle('collapsed', !sidebarVisible);
+            setTimeout(updateFrameSize, 320);
+        }
+
+        // ===== Loaders =====
+        function showLoader() {
+            mobileLoader.classList.remove('hidden');
+            desktopLoader.classList.remove('hidden');
+        }
+
+        function hideLoader() {
+            mobileLoader.classList.add('hidden');
+            desktopLoader.classList.add('hidden');
+        }
+
+        // ===== Event Listeners =====
+        iframeMobile.onload = () => setTimeout(hideLoader, 200);
+        iframeDesktop.onload = () => setTimeout(hideLoader, 200);
+        iframeMobile.onerror = hideLoader;
+        iframeDesktop.onerror = hideLoader;
+
+        // Resize handler
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updateFrameSize, 100);
+        });
+
+        // ===== Initialization =====
+        function init() {
+            // Set category labels
+            const categoryLabel = demoCatalog[currentCategory].label;
+            const sheetCategoryLabel = document.getElementById('sheet-category-label');
+            if (sheetCategoryLabel) sheetCategoryLabel.textContent = categoryLabel;
+            document.getElementById('desktop-category-label').textContent = categoryLabel;
+            
+            // Find initial theme
+            const initialTheme = availableThemes.find(t => t.id === currentTheme) || availableThemes[0];
+            currentTheme = initialTheme.id;
+            
+            // Load initial demo
+            iframeMobile.src = initialTheme.path;
+            iframeDesktop.src = initialTheme.path;
+            
+            // Render UI
+            renderMobileThemeList();
+            renderDesktopThemeList();
+            updateDeviceButtons();
+            
+            // Initial sizing
+            setTimeout(() => {
+                setDevice(currentDevice);
+            }, 50);
+            
+            updateUrl();
+        }
+
+        init();
+    </script>
+</body>
+</html>

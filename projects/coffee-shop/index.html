@@ -1,0 +1,324 @@
+<!doctype html>
+<html class="dark" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Coffee Shop - WebDev Pro</title>
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link
+            crossorigin=""
+            href="https://fonts.gstatic.com"
+            rel="preconnect"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script src="../../assets/js/tailwind-config.js"></script>
+        <link rel="stylesheet" href="../../assets/css/system.css" />
+        <style>
+            .animate-fade-in-up {
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+            @keyframes fadeInUp {
+                0% { opacity: 0; transform: translateY(20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background-dark font-body antialiased text-slate-200 min-h-screen flex flex-col selection:bg-accent selection:text-white"
+    >
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/90 backdrop-blur-xl"
+        >
+            <div
+                class="max-w-[1400px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between"
+            >
+                <a href="../../index.html" class="flex items-center gap-3 group">
+                    <div class="size-8 text-white relative">
+                        <div class="absolute inset-0 bg-primary blur-md opacity-40 group-hover:opacity-70 transition-opacity"></div>
+                        <svg class="relative z-10" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-display font-medium tracking-tight text-white group-hover:text-primary transition-colors">Sandiyasa</h2>
+                </a>
+                <div class="hidden md:flex flex-1 justify-end gap-10 items-center">
+                    <nav class="flex items-center gap-8">
+                        <a class="text-sm font-medium text-slate-400 hover:text-white transition-colors tracking-wide" href="../../index.html">Home</a>
+                        <a class="text-sm font-medium text-white transition-colors tracking-wide" href="../../gallery.html">Gallery</a>
+                        <a class="text-sm font-medium text-slate-400 hover:text-white transition-colors tracking-wide" href="../../index.html#faq">FAQ</a>
+                    </nav>
+                    <a href="../../index.html#contact" class="h-11 px-6 rounded-full bg-white text-black text-sm font-medium hover:bg-slate-200 transition-colors shadow-button flex items-center justify-center">
+                        Order Design
+                    </a>
+                </div>
+                <button class="md:hidden text-white p-2">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-grow w-full max-w-[1400px] mx-auto px-6 md:px-12 py-10 flex flex-col gap-10">
+            <!-- Breadcrumb -->
+            <nav aria-label="Breadcrumb" class="animate-fade-in-up" style="animation-delay: 0.1s;">
+                <ol class="flex items-center gap-2 text-sm font-medium">
+                    <li>
+                        <a class="text-slate-500 hover:text-primary transition-colors" href="../../gallery.html">Gallery</a>
+                    </li>
+                    <li class="flex items-center text-slate-600">
+                        <span class="material-symbols-outlined text-[12px]">arrow_forward_ios</span>
+                    </li>
+                    <li>
+                        <span aria-current="page" class="text-white">Coffee Shop</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Hero Banner (Clickable - scrolls to templates) -->
+            <a href="#templates" class="block relative w-full aspect-[16/9] md:aspect-[2.5/1] overflow-hidden rounded-[2rem] shadow-xl animate-fade-in-up cursor-pointer group/hero hover:shadow-2xl transition-shadow duration-500" style="animation-delay: 0.2s;">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/hero:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqL8lYhENX-ZjeSBwY9ugq7aQifHP1jF3Uv1dCZSetUW_HXoFPBkx7Gv4EAcBS-x_PnX2bHnZ2pW_5hywFI-1iS2WRwVCoAmkg1ECfLogtI3UfxiYSMJmLDNcEKu6dTVtwau_6uHHnRqXh6sCFIZFZ8ZvMI1q4b-3-4JlHXdLjKHCYNS25lRAL4faRZ51UwS4hfzEDGHKojeoqwYk_LUYCmDhYcGWl3TX4v2nzSpGMcQoU8Fk59yAwts8PUY1eXzYmrMpmaNjjq-Q');"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+                <!-- Hero Content -->
+                <div class="absolute top-0 bottom-0 left-0 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-start max-w-lg">
+                    <h1 class="text-5xl md:text-7xl font-serif font-bold text-white leading-[0.95] tracking-tight mb-4">
+                        Kopi Senja
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-300 font-light leading-relaxed">
+                        A curated selection of high-fidelity templates for the modern roastery and boutique cafe.
+                    </p>
+                </div>
+                <!-- Best Seller Badge -->
+                <div class="absolute top-6 right-6 lg:top-10 lg:right-10 z-10">
+                    <div class="absolute -inset-1 bg-primary/30 rounded-full blur opacity-40 group-hover/hero:opacity-60 transition duration-500 animate-pulse-slow"></div>
+                    <div class="relative flex items-center gap-3 bg-dark-surface border border-white/10 px-5 py-2.5 rounded-full shadow-2xl">
+                        <div class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                        </div>
+                        <span class="text-white text-sm font-bold tracking-wide uppercase">Best Seller</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Template Grid - Asymmetric Layout -->
+            <div id="templates" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-4 scroll-mt-28">
+                
+                <!-- Card 1: Modern (Live) - 2 column span -->
+                <div class="group relative flex flex-col gap-4 md:col-span-2 animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] bg-dark-surface shadow-lg">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBTp-Q-9GFjgP6NlQJnjfFbUe8UkjMzFhE1XvnYu8YjeqcitwUk_Gd7kAZdoT_WmVhXbrRljJIhAm4fuDu2d3vcSQXVqwmBDOU-oTQbU13rHzwgL3-TcT567V9s0afVJjNH_REm2xWdumsIDVcmO2ld9f_vRbZKqnumuf4GUKSNm0XLCAZzTN8gPJkS1KmV-dMIGCbzmQ1yXqW7LuyTtNEwZupy8nv1kdqCD2kG5qM1zWjrPXpj2qvxR2B3PSMeTYiebiYCi833w');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+                        <!-- Floating Action Button -->
+                        <a href="./view.html?theme=modern" class="absolute bottom-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            <div class="bg-white text-black p-3 rounded-full shadow-xl hover:bg-primary hover:text-white transition-colors">
+                                <span class="material-symbols-outlined block">arrow_outward</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-white text-xl font-medium mb-1">Modern</h3>
+                            <p class="text-slate-500 text-sm">Minimalist & Clean</p>
+                        </div>
+                        <div class="flex items-center gap-1 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-2 group-hover:translate-x-0">
+                            <span>Live Preview</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Industrial (Live) - 1 column -->
+                <div class="group relative flex flex-col gap-4 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="relative aspect-[3/4] w-full overflow-hidden rounded-[2rem] bg-dark-surface shadow-lg">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0lTYa0y7Pu61BYtsbsoXShFWmOwrQ8sFXh0mD49iMRBFJVNHakCsAd_aBkgUxO2o6ctEI-bQHx88J-IJUMU6g9B2_RKBh7FMfMvOt5N5S3zKonWeZ7gyYoDjTks4ErTpOFLeoFQgvyY3-UmE2MNCLLKWuxJ2YCTTNnf4k6KGejMz17lLmWJW0pNqCkPh2kQSTunXC0p-SAzQNnTR5hdwngpK848wnSX1pvN38yB8rjYgfiRMRAuXCxR-nOx5ZCFJqjDrvJmX1Ew');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+                        <!-- Floating Action Button -->
+                        <a href="./view.html?theme=classic" class="absolute bottom-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            <div class="bg-white text-black p-3 rounded-full shadow-xl hover:bg-primary hover:text-white transition-colors">
+                                <span class="material-symbols-outlined block">arrow_outward</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-white text-xl font-medium mb-1">Industrial</h3>
+                            <p class="text-slate-500 text-sm">Raw & Authentic</p>
+                        </div>
+                        <div class="flex items-center gap-1 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-2 group-hover:translate-x-0">
+                            <span>Live Preview</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Minimal (Coming Soon) - 1 column -->
+                <div class="group relative flex flex-col gap-4 animate-fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="relative aspect-[3/4] w-full overflow-hidden rounded-[2rem] bg-dark-surface shadow-lg ring-1 ring-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 filter grayscale-[30%] group-hover:grayscale-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbUYE-2YEwVkONNbWlZq0BUM934iEkcRFkRVA1Ph2z5TxmrkBOq-umdkcFoGEIC4pNXfswSiOnRhgrlrdphy6BxxjQBOdkTupTb43Rz1nd9A508vTUpeDDntiXuPC1MRq8nuwK9CRy6lpZ9qGOutL1j4pvAybsXntnvUiwi4ESQ3CIjKLuG4bDdzCWXwExERVWFYkemXE5dv6hAGoxb23WPBjd6LN_h2PwMGNvC1JPRQmCFM42LZPiF5C5yF1b8QeMs2kIadkwEg');"></div>
+                        <!-- Locked Overlay -->
+                        <div class="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="bg-black/40 p-4 rounded-full border border-white/10 backdrop-blur-md">
+                                <span class="material-symbols-outlined text-white text-3xl">lock</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-slate-400 group-hover:text-white transition-colors text-xl font-medium mb-1">Minimal</h3>
+                            <p class="text-slate-600 text-sm">Japanese Inspired</p>
+                        </div>
+                        <div class="px-3 py-1 rounded-full border border-white/10 text-slate-500 text-xs font-medium bg-dark-surface">
+                            Coming Soon
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Elegant (Coming Soon) - 2 column span -->
+                <div class="group relative flex flex-col gap-4 md:col-span-2 animate-fade-in-up" style="animation-delay: 0.6s;">
+                    <div class="relative aspect-[16/9] w-full overflow-hidden rounded-[2rem] bg-dark-surface shadow-lg ring-1 ring-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 filter grayscale-[30%] group-hover:grayscale-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMKYl8YNOLuAm9_YO9EJQl3daRCHuP2aAmf-MB8M0WlPxp4ZUo5rFZ62-2piUSw-sP9TjoWdR-bPoVxzOi7mZHhhiLYQq-Kkksj7pF9lW3O_kqHHK1KL7WYuPgC1wB4jXaBGG4qDyPVdcxiqxcF9I4Jz8zqiAodOl66Hwfqw_Hi6k0et93srroQMPIY9v6STIQ73FL5UXirzLStsK51oHSwk2irv3ZhEgNGnBjWkVNt6Jwjt2n0hs3ycl1CtFnDO5c1wDkOmRNkA');"></div>
+                        <!-- Locked Overlay -->
+                        <div class="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="bg-black/40 p-4 rounded-full border border-white/10 backdrop-blur-md">
+                                <span class="material-symbols-outlined text-white text-3xl">lock</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-slate-400 group-hover:text-white transition-colors text-xl font-medium mb-1">Elegant</h3>
+                            <p class="text-slate-600 text-sm">Premium & Classic</p>
+                        </div>
+                        <div class="px-3 py-1 rounded-full border border-white/10 text-slate-500 text-xs font-medium bg-dark-surface">
+                            Coming Soon
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Seasonal Banner - 2 column span -->
+                <div class="group relative flex flex-col gap-4 md:col-span-2 animate-fade-in-up" style="animation-delay: 0.7s;">
+                    <div class="relative aspect-[16/9] w-full overflow-hidden rounded-[2rem] bg-secondary/20 shadow-lg ring-1 ring-secondary/10 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-cover bg-center filter grayscale-[50%] opacity-40" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBao4L2XMd8TaysrFc_fTrOAIP_0TdyWJaJbRtLnxFh48DOAwmOYpeQGMvjTqlEt7ZdTwI5cQFHPIhnuxHi5YXOcqENHH2aKfcY9qqD99lA9zJ1p-XKLoB5nXFqzMlql9JvNJsbIrNH_piqioqA60NqfJFuyLoem9BZg1kepZRD0NBrZR04Snw1X0cAb1G0D4Nh5A6a_X3P-Mz0eJ4bGxDEX6CG9JMDLLUDCnxRCraC_7fxrvdutEr-bg7ZNmlzyOnPeIpBooEfLSY');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/60 to-secondary/60 flex items-center justify-center text-white text-center p-8">
+                            <div>
+                                <h3 class="font-serif text-3xl mb-2">New Flavors Brewing</h3>
+                                <p class="text-lg text-white/80">Exclusive templates dropping soon!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-white text-xl font-medium mb-1">Seasonal Blends</h3>
+                            <p class="text-slate-500 text-sm">Fresh & Unique</p>
+                        </div>
+                        <div class="px-3 py-1 rounded-full border border-secondary/20 text-white text-xs font-medium bg-secondary">
+                            Sneak Peek
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Gallery Section (Horizontal Carousel) -->
+            <div class="w-full pb-10 animate-fade-in-up" style="animation-delay: 0.8s;">
+                <div class="flex justify-between items-end mb-8">
+                    <h3 class="text-2xl md:text-3xl font-serif text-white">Explore Gallery</h3>
+                    <a class="flex items-center gap-1 text-primary hover:text-white transition-colors text-sm font-medium" href="../../gallery.html">
+                        View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+                
+                <!-- Horizontal Scroll Container -->
+                <div class="flex overflow-x-auto gap-6 no-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
+                    
+                    <!-- Gallery Card 1: Fashion Nova -->
+                    <div class="group relative flex-none w-[calc(100%-3rem)] sm:w-80 md:w-96 lg:w-[420px] aspect-[1.8/1] overflow-hidden rounded-[2rem] cursor-not-allowed">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2670&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500"></div>
+                        <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-black/90 to-transparent">
+                            <h4 class="text-white text-xl md:text-2xl font-serif mb-1">Fashion Nova</h4>
+                            <p class="text-slate-400 text-sm font-light">E-commerce Template</p>
+                        </div>
+                        <!-- Coming Soon Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="bg-black/60 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/10">
+                                <span class="text-white text-sm font-medium">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Card 2: Archi Studio -->
+                    <div class="group relative flex-none w-[calc(100%-3rem)] sm:w-80 md:w-96 lg:w-[420px] aspect-[1.8/1] overflow-hidden rounded-[2rem] cursor-not-allowed">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2568&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500"></div>
+                        <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-black/90 to-transparent">
+                            <h4 class="text-white text-xl md:text-2xl font-serif mb-1">Archi Studio</h4>
+                            <p class="text-slate-400 text-sm font-light">Portfolio Template</p>
+                        </div>
+                        <!-- Coming Soon Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="bg-black/60 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/10">
+                                <span class="text-white text-sm font-medium">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Card 3: Landing Page -->
+                    <div class="group relative flex-none w-[calc(100%-3rem)] sm:w-80 md:w-96 lg:w-[420px] aspect-[1.8/1] overflow-hidden rounded-[2rem] cursor-not-allowed">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500"></div>
+                        <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-black/90 to-transparent">
+                            <h4 class="text-white text-xl md:text-2xl font-serif mb-1">Landing Page</h4>
+                            <p class="text-slate-400 text-sm font-light">Startup & SaaS Template</p>
+                        </div>
+                        <!-- Coming Soon Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="bg-black/60 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/10">
+                                <span class="text-white text-sm font-medium">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Card 4: Restaurant -->
+                    <div class="group relative flex-none w-[calc(100%-3rem)] sm:w-80 md:w-96 lg:w-[420px] aspect-[1.8/1] overflow-hidden rounded-[2rem] cursor-not-allowed">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2670&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500"></div>
+                        <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-black/90 to-transparent">
+                            <h4 class="text-white text-xl md:text-2xl font-serif mb-1">Restaurant</h4>
+                            <p class="text-slate-400 text-sm font-light">Food & Beverage Template</p>
+                        </div>
+                        <!-- Coming Soon Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="bg-black/60 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/10">
+                                <span class="text-white text-sm font-medium">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="w-full bg-dark-surface border-t border-slate-800 mt-auto">
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-12 flex flex-col items-center gap-6">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="size-6 relative">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <span class="font-display font-medium text-lg tracking-tight">Sandiyasa</span>
+                </div>
+                <p class="text-slate-600 text-sm font-light">
+                    2024 Sandiyasa. All rights reserved.
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>

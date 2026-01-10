@@ -1,0 +1,233 @@
+<!doctype html>
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Coffee Shop - WebDev Pro</title>
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link
+            crossorigin=""
+            href="https://fonts.gstatic.com"
+            rel="preconnect"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script src="../../assets/js/tailwind-config.js"></script>
+        <link rel="stylesheet" href="../../assets/css/system.css" />
+    </head>
+    <body
+        class="bg-background-light dark:bg-background-dark font-body antialiased text-slate-800 dark:text-slate-200 min-h-screen flex flex-col selection:bg-accent selection:text-white"
+    >
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-100 dark:border-slate-800 bg-white/90 dark:bg-black/90 backdrop-blur-xl"
+        >
+            <div
+                class="max-w-[1400px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between"
+            >
+                <a href="../../index.html" class="flex items-center gap-3 group">
+                    <div class="size-8 text-text-main dark:text-white relative">
+                        <div class="absolute inset-0 bg-primary blur-md opacity-40 group-hover:opacity-70 transition-opacity"></div>
+                        <svg class="relative z-10" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-display font-medium tracking-tight text-text-main dark:text-white group-hover:text-primary transition-colors">WebDev Pro</h2>
+                </a>
+                <div class="hidden md:flex flex-1 justify-end gap-10 items-center">
+                    <nav class="flex items-center gap-8">
+                        <a class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors tracking-wide" href="../../index.html">Home</a>
+                        <a class="text-sm font-medium text-slate-900 dark:text-white transition-colors tracking-wide" href="../../gallery.html">Gallery</a>
+                        <a class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors tracking-wide" href="../../index.html#faq">FAQ</a>
+                    </nav>
+                    <a href="../../index.html#contact" class="h-11 px-6 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-slate-700 dark:hover:bg-slate-200 transition-colors shadow-button flex items-center justify-center">
+                        Order Design
+                    </a>
+                </div>
+                <button class="md:hidden text-slate-900 dark:text-white p-2">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-grow w-full max-w-[1400px] mx-auto px-6 md:px-12 py-12 md:py-20 flex flex-col gap-12">
+            <!-- Breadcrumb -->
+            <nav aria-label="Breadcrumb">
+                <ol class="flex items-center gap-3 text-sm tracking-wide">
+                    <li>
+                        <a class="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors font-medium" href="../../gallery.html">Gallery</a>
+                    </li>
+                    <li class="flex items-center text-slate-300">
+                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                    </li>
+                    <li>
+                        <span aria-current="page" class="text-slate-900 dark:text-white font-medium">Coffee Shop</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 p-6 text-slate-600 dark:text-slate-300">
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Coming Soon</p>
+                <h2 class="text-2xl font-display font-medium text-slate-900 dark:text-white mt-2">This category is under development.</h2>
+                <p class="text-sm mt-2">Coffee Shop is ready to preview today.</p>
+                <a href="../coffee-shop/index.html" class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-primary hover:text-primary-hover transition-colors">
+                    View Coffee Shop <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+
+            <!-- Product Header -->
+            <div class="flex flex-col gap-6 max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider w-fit">
+                    <span class="size-2 rounded-full bg-accent animate-pulse"></span>
+                    Best Seller
+                </div>
+                <h1 class="text-5xl md:text-6xl font-display font-medium tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                    Kopi Senja - Modern Coffee Shop
+                </h1>
+                <p class="text-xl text-slate-500 dark:text-slate-400 leading-relaxed font-light max-w-2xl">
+                    A warm, inviting digital experience designed for specialty roasters and modern cafes. Features an integrated menu system and reservation capabilities.
+                </p>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-8">
+                
+                <!-- Left Column: Main Visuals -->
+                <div class="lg:col-span-2 flex flex-col gap-8">
+                    <!-- Main Hero Image -->
+                    <div class="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-boutique border border-slate-100 dark:border-slate-800">
+                        <div class="w-full h-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center hover:scale-105 transition-transform duration-700 ease-out" 
+                             style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2574&auto=format&fit=crop');">
+                        </div>
+                    </div>
+
+                    <!-- Secondary Images Grid -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="relative w-full aspect-square overflow-hidden rounded-xl shadow-boutique border border-slate-100 dark:border-slate-800">
+                            <div class="w-full h-full bg-slate-200 bg-cover bg-center hover:scale-105 transition-transform duration-700"
+                                 style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2670&auto=format&fit=crop');">
+                            </div>
+                        </div>
+                        <div class="relative w-full aspect-square overflow-hidden rounded-xl shadow-boutique border border-slate-100 dark:border-slate-800">
+                            <div class="w-full h-full bg-slate-200 bg-cover bg-center hover:scale-105 transition-transform duration-700"
+                                 style="background-image: url('https://images.unsplash.com/photo-1442512595331-e89e7385a861?q=80&w=2670&auto=format&fit=crop');">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Details & Actions -->
+                <div class="lg:col-span-1 flex flex-col gap-10">
+                    
+                    <!-- Pricing Card -->
+                    <div class="p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-slate-100 dark:border-slate-800 shadow-boutique flex flex-col gap-6">
+                        <div>
+                            <p class="text-sm text-slate-500 mb-1 uppercase tracking-wide font-medium">Starting from</p>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl font-display font-medium text-slate-900 dark:text-white">IDR 2.5jt</span>
+                            </div>
+                        </div>
+                        <hr class="border-slate-100 dark:border-slate-800">
+                        <ul class="flex flex-col gap-4 text-sm text-slate-600 dark:text-slate-300">
+                            <li class="flex gap-3 items-center">
+                                <span class="material-symbols-outlined text-accent text-xl">check_circle</span>
+                                <span>Responsive Mobile Design</span>
+                            </li>
+                            <li class="flex gap-3 items-center">
+                                <span class="material-symbols-outlined text-accent text-xl">check_circle</span>
+                                <span>Digital Menu Integration</span>
+                            </li>
+                            <li class="flex gap-3 items-center">
+                                <span class="material-symbols-outlined text-accent text-xl">check_circle</span>
+                                <span>Location & Maps</span>
+                            </li>
+                            <li class="flex gap-3 items-center">
+                                <span class="material-symbols-outlined text-accent text-xl">check_circle</span>
+                                <span>WhatsApp Order Button</span>
+                            </li>
+                        </ul>
+                        <button disabled class="w-full py-4 rounded-full bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium shadow-button flex items-center justify-center gap-2 cursor-not-allowed">
+                            <span>Coming Soon</span>
+                            <span class="material-symbols-outlined">schedule</span>
+                        </button>
+                        <p class="text-xs text-center text-slate-400">Launching soon</p>
+                    </div>
+
+                    <!-- Tech Specs -->
+                    <div class="flex flex-col gap-4">
+                        <h3 class="text-lg font-display font-medium text-slate-900 dark:text-white">Technical Specs</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">HTML5</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Tailwind CSS</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Fast Load</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">SEO Optimized</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Related Designs -->
+            <div class="pt-12 border-t border-slate-100 dark:border-slate-800">
+                <div class="flex justify-between items-end mb-10">
+                    <h2 class="text-3xl font-display font-medium text-slate-900 dark:text-white">Similar Styles</h2>
+                    <a href="../../gallery.html" class="text-sm font-medium text-accent hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
+                        View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Related 1 -->
+                    <a href="../fashion-nova/index.html" class="group block">
+                        <div class="relative w-full aspect-[4/3] overflow-hidden rounded-xl shadow-boutique mb-4">
+                            <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                                 style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2670&auto=format&fit=crop');">
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-1 group-hover:text-accent transition-colors">Fashion Nova</h3>
+                        <p class="text-sm text-slate-500">Retail / Minimalist</p>
+                    </a>
+                    
+                    <!-- Related 2 -->
+                    <a href="../archi-studio/index.html" class="group block">
+                        <div class="relative w-full aspect-[4/3] overflow-hidden rounded-xl shadow-boutique mb-4">
+                            <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                                 style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2568&auto=format&fit=crop');">
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-1 group-hover:text-accent transition-colors">Archi Studio</h3>
+                        <p class="text-sm text-slate-500">Corporate / Modern</p>
+                    </a>
+
+                    <!-- Related 3 (Placeholder) -->
+                    <div class="group opacity-50 cursor-not-allowed">
+                        <div class="relative w-full aspect-[4/3] overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl text-slate-400">lock</span>
+                        </div>
+                        <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-1">Coming Soon</h3>
+                        <p class="text-sm text-slate-500">More categories</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="w-full bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 mt-auto">
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-16 flex flex-col items-center gap-8">
+                <div class="flex items-center gap-3 text-slate-900 dark:text-white mb-2">
+                    <span class="material-symbols-outlined text-2xl font-light">grid_view</span>
+                    <span class="font-display font-medium text-lg tracking-tight">WebDev Pro</span>
+                </div>
+                <p class="text-slate-400 dark:text-slate-600 text-sm font-light">
+                    © 2024 WebDev Pro. All rights reserved.
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bold Brew - Modern Coffee</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d41121",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#181112",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for an industrial feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181112; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #39282a; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d41121; 
+        }
+        
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: #d41121;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-name: ticker;
+            animation-duration: 30s;
+        }
+        .ticker__item {
+            display: inline-block;
+            padding: 0 2rem;
+            color: white;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-white font-display overflow-x-hidden antialiased selection:bg-primary selection:text-white">
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full border-b border-[#39282a] bg-background-dark/95 backdrop-blur-sm">
+<div class="px-4 md:px-10 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">local_cafe</span>
+<h1 class="text-xl md:text-2xl font-black tracking-tighter uppercase">Bold Brew</h1>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#">Locations</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#">About</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#">Wholesale</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:text-primary transition-colors md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center gap-4">
+<button class="p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="bg-primary hover:bg-red-700 text-white text-sm font-bold py-2 px-6 rounded-lg uppercase tracking-wider transition-all">
+                        Order Pickup
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex flex-col md:flex-row border-b border-[#39282a]">
+<!-- Text Content -->
+<div class="w-full md:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center border-r border-[#39282a]">
+<span class="inline-block text-primary font-bold tracking-[0.2em] mb-4 text-sm uppercase">Est. 2024 — Industrial Roast</span>
+<h2 class="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tighter mb-8 uppercase">
+                Fuel for the <span class="text-primary">Modern</span> Grind
+            </h2>
+<p class="text-gray-400 text-lg md:text-xl max-w-md mb-10 font-light leading-relaxed">
+                No fillers. Just caffeine. Small batch roasted for the bold. Experience coffee stripped back to its raw, powerful essence.
+            </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white h-14 px-8 rounded-lg font-bold uppercase tracking-wider hover:bg-white hover:text-background-dark transition-colors border border-primary">
+                    Shop Roasts
+                </button>
+<button class="bg-transparent text-white h-14 px-8 rounded-lg font-bold uppercase tracking-wider hover:bg-[#39282a] transition-colors border border-[#39282a]">
+                    Our Story
+                </button>
+</div>
+</div>
+<!-- Image Content -->
+<div class="w-full md:w-1/2 relative bg-[#120d0e] min-h-[50vh] md:min-h-auto overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Close up espresso pouring into cup high contrast black and white" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDa8PuScqisQgGd98trqztYT8KbIFCy34SapRGwsB8SOCB3cCxfD3eNKoak-aCuNgXCwKoZKicj7okPcSR4xRU8t1LbubkeBerUMSF3ENL1-IJvxoO_YIdAVeAgkwessmRf3a1QIJmoQd208Fs803t5_c1LEyNpOqqdjHbk2OKQJy2RP-IJbmBdXuMx3LtBoxqURWEVfLc0zTEJSwI3QQICU-2pJDfsoXVOCYB3tJMgPh1WZ43xXZhQpCxtSD39SCXX4jJhaYUjLf2y'); filter: grayscale(100%) contrast(120%);">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+<!-- Floating info card -->
+<div class="absolute bottom-8 left-8 right-8 p-6 bg-background-dark/80 backdrop-blur-md border border-[#39282a] rounded-lg">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Featured Blend</p>
+<h3 class="text-2xl font-bold">Midnight Oil</h3>
+</div>
+<span class="material-symbols-outlined text-white text-3xl">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Marquee Banner -->
+<div class="ticker-wrap border-y border-background-dark py-3">
+<div class="ticker">
+<div class="ticker__item">SMALL BATCH - LOCALLY ROASTED - STRONG - NO COMPROMISE - </div>
+<div class="ticker__item">SMALL BATCH - LOCALLY ROASTED - STRONG - NO COMPROMISE - </div>
+<div class="ticker__item">SMALL BATCH - LOCALLY ROASTED - STRONG - NO COMPROMISE - </div>
+<div class="ticker__item">SMALL BATCH - LOCALLY ROASTED - STRONG - NO COMPROMISE - </div>
+</div>
+</div>
+<!-- Product Grid -->
+<section class="px-4 py-20 md:px-10 border-b border-[#39282a]">
+<div class="max-w-[1400px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div>
+<h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2">The Daily Rotation</h2>
+<p class="text-gray-400">Curated for maximum impact.</p>
+</div>
+<a class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider hover:text-white transition-colors" href="#">
+                    View All Products <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<div class="group relative bg-[#221618] rounded-lg border border-[#39282a] overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="aspect-[4/5] bg-background-dark relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Coffee beans in a minimal bag packaging" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLDjthC3RXm-e70CsD0cH4o4dCRub_HkyZOUJJQR3iIMvrD7w7q9TVHr9xpK-w-9qNmbtbH8cV_c4oIHxkeFFnSvzlXA8bL8NLAEDEnwJ5GFysv84z4uSQvzBmyfKZiGFOQhKsjnev20Ae5LpkpdGbdVF_w8i-ohP8mrSS8yOgbdW9ZEf-uln8bvCJFd9wvZ_vec309QHW3-km5j97kUTX9FY-eqk5I6zCm_xRUtkEEcVFfWLnhhAzd80xAznKkbgYl7XjC5adx4DB'); filter: grayscale(100%);">
+</div>
+<div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded uppercase">
+                            Best Seller
+                        </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold uppercase tracking-tight">The Daily Driver</h3>
+<span class="text-lg font-bold text-gray-300">$18.00</span>
+</div>
+<p class="text-sm text-gray-400 mb-6">Notes of chocolate, toasted nut, &amp; caramel.</p>
+<button class="w-full bg-[#39282a] group-hover:bg-primary text-white font-bold py-3 px-4 rounded uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative bg-[#221618] rounded-lg border border-[#39282a] overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="aspect-[4/5] bg-background-dark relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Dark roast coffee beans spilling from bag" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWppB8hkcPa-ZwJLY2dWwqVgR--uzYGC1sUbFQfep40Jj_nddVqnLm8kq80BEWIN97mba8dfb93Wf183wxvA3OhvXbD6xF3crOzk9g8IuqEDml8G4KpeQ7Hf6WMansNjzRnoJ4VT7WMgMqLopAX74jrowLevHU-xTDqBcUiJUZMXK-T8NU3a7s_Plb4HVuL454XJTQBwfcZ8QVaw_P96yE1SnWuzPNnqUYcxDUB9ZAad4kGGdtMxrKxTAPWIIAWSO_6RqnKypqvD-D'); filter: grayscale(100%);">
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold uppercase tracking-tight">Red Eye Blend</h3>
+<span class="text-lg font-bold text-gray-300">$20.00</span>
+</div>
+<p class="text-sm text-gray-400 mb-6">Smoky, intense, heavy body. Not for the weak.</p>
+<button class="w-full bg-[#39282a] group-hover:bg-primary text-white font-bold py-3 px-4 rounded uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative bg-[#221618] rounded-lg border border-[#39282a] overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="aspect-[4/5] bg-background-dark relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Espresso shot in glass cup on dark surface" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcUf-_mHQl0GZ4859rJSETtbNQu_WdrNcTpscQYw-Jv3O9nb1oZEc6ZiKxnzgo90TJwipirK2dESqJ5fw7BRoWL0nMHUvbplQjOMWMn1Wf3_MguF4GIAYZEl_yoW0xcWQFzTbVxw2x9rUyB8YhJYpClqaMcbtdR4-uq5I4BRw77s_cYC3r7v-kqe2eUKhfeJ-72887Bpxz_XRbz1jt4YjMDHBH0-BmVVnUT9uNxiYgX2IlYQd78UT7B4hDrdQc2Ss5h_MOWGMFl9TS'); filter: grayscale(100%);">
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold uppercase tracking-tight">Cold Brew Kit</h3>
+<span class="text-lg font-bold text-gray-300">$24.00</span>
+</div>
+<p class="text-sm text-gray-400 mb-6">Coarse grind blend specifically for slow steeping.</p>
+<button class="w-full bg-[#39282a] group-hover:bg-primary text-white font-bold py-3 px-4 rounded uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Split Section -->
+<section class="flex flex-col md:flex-row min-h-[600px] border-b border-[#39282a]">
+<div class="w-full md:w-1/2 bg-primary flex flex-col justify-center p-12 md:p-24 text-white relative overflow-hidden">
+<!-- Pattern overlay -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;">
+</div>
+<div class="relative z-10">
+<h2 class="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-none">Precision.<br/>Every.<br/>Time.</h2>
+<p class="text-lg md:text-xl font-medium mb-8 max-w-sm opacity-90">
+                    We don't believe in happy accidents. Our roasting process is data-driven and executed with industrial precision to ensure consistency in every cup.
+                </p>
+<a class="inline-flex items-center gap-2 border-b-2 border-white pb-1 font-bold uppercase tracking-wider hover:text-black hover:border-black transition-all w-fit" href="#">
+                    Learn Our Process <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="w-full md:w-1/2 bg-[#120d0e] relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Close up of industrial coffee roaster machine details" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZeLTaeAy11U-zRJ08FS5FmPid56KfOvdgb3jst_zJnq-VVSWIKvRcbPuDdsODp-Jtcm5YqFR4TkY3IS_mgaWhXfvyj6PiobveeBVZ8SgRu8tISbbORXi6E3FSlJTfiDY6elk66iIPzb-cb3m3_tyQZxMq77Nxrv6qUygN92CfTUCbDcNRfrHKPqIox_9LH9ZnhcyvvtNTb6eOKXaceVNcmgnXH6Y-bJLJzr_DPVtEjVmciIn9rLQfJMQe4tCar9WushDH4a3c6GNs'); filter: grayscale(100%) contrast(110%);">
+</div>
+</div>
+</section>
+<!-- Location & Hours Block -->
+<section class="py-20 px-4 md:px-10 bg-background-dark border-b border-[#39282a]">
+<div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+<!-- Map/Image Side -->
+<div class="h-[400px] lg:h-auto rounded-lg overflow-hidden relative border border-[#39282a] group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-location="Downtown Industrial District Map" style="background-image: url('https://placeholder.pics/svg/300'); filter: grayscale(100%);">
+</div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-6 left-6 bg-white text-black py-2 px-4 font-bold uppercase tracking-widest text-sm rounded-sm">
+                    Headquarters
+                </div>
+</div>
+<!-- Info Side -->
+<div class="flex flex-col justify-center">
+<h2 class="text-4xl font-black uppercase tracking-tighter mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-4xl">pin_drop</span> 
+                    Find The Lab
+                </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
+<div>
+<h4 class="text-primary font-bold uppercase tracking-widest text-sm mb-4">Location</h4>
+<p class="text-xl font-bold leading-tight">1049 Industrial Way<br/>Building 4B<br/>Seattle, WA 98134</p>
+</div>
+<div>
+<h4 class="text-primary font-bold uppercase tracking-widest text-sm mb-4">Contact</h4>
+<p class="text-xl font-bold leading-tight mb-2">hello@boldbrew.com</p>
+<p class="text-xl font-bold leading-tight">(206) 555-0199</p>
+</div>
+</div>
+<div class="bg-[#221618] p-8 rounded-lg border border-[#39282a]">
+<h4 class="text-white font-black uppercase tracking-wider text-lg mb-6 border-b border-[#39282a] pb-4">Operating Hours</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-lg">
+<span class="text-gray-400 font-medium">Mon - Fri</span>
+<span class="font-bold text-white">06:00 - 18:00</span>
+</div>
+<div class="flex justify-between items-center text-lg">
+<span class="text-gray-400 font-medium">Saturday</span>
+<span class="font-bold text-white">08:00 - 20:00</span>
+</div>
+<div class="flex justify-between items-center text-lg">
+<span class="text-primary font-medium">Sunday</span>
+<span class="font-bold text-primary">CLOSED FOR ROASTING</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="py-24 px-4 md:px-10 flex justify-center bg-[#120d0e]">
+<div class="w-full max-w-4xl text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-6">mail</span>
+<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Don't Miss The Drop</h2>
+<p class="text-gray-400 mb-10 text-lg">Subscribe for limited batch alerts and brewing guides.</p>
+<form class="flex flex-col md:flex-row gap-4">
+<div class="flex-grow relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="text-gray-500 font-mono text-sm">&gt;_</span>
+</div>
+<input class="w-full bg-[#181112] border-2 border-[#39282a] text-white font-mono h-16 pl-12 pr-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder:text-gray-600 uppercase tracking-wider" placeholder="ENTER_EMAIL_ADDRESS" type="email"/>
+</div>
+<button class="h-16 px-10 bg-primary hover:bg-red-700 text-white font-bold uppercase tracking-widest rounded-lg transition-colors whitespace-nowrap" type="button">
+                    Initialize
+                </button>
+</form>
+<p class="text-xs text-gray-600 mt-4 uppercase tracking-widest">No spam. Only high octane content.</p>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-[#39282a] pt-16 pb-8 px-4 md:px-10">
+<div class="max-w-[1400px] mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-20">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">local_cafe</span>
+<span class="font-black text-xl uppercase tracking-tighter">Bold Brew</span>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Redefining coffee culture through industrial precision and bold flavors. Based in Seattle, shipping worldwide.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-[#221618] flex items-center justify-center hover:bg-primary hover:text-white transition-colors text-gray-400" href="#">
+<!-- Social Icon Placeholder -->
+<span class="font-bold">IG</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-[#221618] flex items-center justify-center hover:bg-primary hover:text-white transition-colors text-gray-400" href="#">
+<span class="font-bold">TW</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-[#221618] flex items-center justify-center hover:bg-primary hover:text-white transition-colors text-gray-400" href="#">
+<span class="font-bold">YT</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Shop</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">All Coffee</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Equipment</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Merch</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Subscriptions</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Company</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Locations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Wholesale</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Support</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Shipping</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-[#39282a] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-wider">
+<p>© 2024 Bold Brew Coffee Co. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Coffee Cup - Menu</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#6F4E37",
+            secondary: "#C6A87C",
+            "background-light": "#FDFBF7",
+            "background-dark": "#1A1410",
+            "card-light": "#FFFFFF",
+            "card-dark": "#261E19",
+            "text-light": "#3E2723",
+            "text-dark": "#EFEBE9",
+          },
+          fontFamily: {
+            display: ["Playfair Display", "serif"],
+            sans: ["Lato", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.75rem",
+            xl: "1rem",
+            "2xl": "1.5rem",
+          },
+          boxShadow: {
+            soft: "0 10px 40px -10px rgba(0,0,0,0.08)",
+            glow: "0 0 20px rgba(198, 168, 124, 0.3)",
+          },
+          keyframes: {
+            "float-slow": {
+              "0%, 100%": { transform: "translateY(0px)" },
+              "50%": { transform: "translateY(-6px)" },
+            },
+          },
+          animation: {
+            "float-slow": "float-slow 3.5s ease-in-out infinite",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #6F4E37; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300">
+  <nav class="fixed w-full z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-white/10 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <a class="flex-shrink-0 flex items-center gap-2 cursor-pointer" href="#top">
+          <span class="material-icons text-primary text-3xl">coffee</span>
+          <span class="font-display font-bold text-2xl tracking-wide text-primary">The Coffee Cup</span>
+        </a>
+        <div class="hidden md:flex space-x-8 items-center">
+          <a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary font-medium transition" href="#top">Home</a>
+          <a class="text-primary font-bold dark:text-secondary transition" href="#menu">Menu</a>
+          <a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary font-medium transition" href="#services">Services</a>
+          <a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary font-medium transition" href="#reviews">Reviews</a>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+          <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition" id="theme-toggle" aria-label="Toggle theme">
+            <span class="material-icons text-gray-600 dark:text-gray-300">dark_mode</span>
+          </button>
+          <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition relative" id="cart-button" aria-label="Open cart">
+            <span class="material-icons text-gray-600 dark:text-gray-300">shopping_cart</span>
+            <span id="cart-count" class="absolute -top-1 -right-1 h-5 w-5 bg-primary text-white text-[10px] flex items-center justify-center rounded-full">0</span>
+          </button>
+          <a class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full font-medium transition shadow-lg transform hover:-translate-y-0.5" href="#newsletter">
+            Sign up
+          </a>
+        </div>
+        <div class="md:hidden flex items-center gap-3">
+          <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition" id="mobile-cart-button" aria-label="Open cart">
+            <span class="material-icons text-gray-600 dark:text-gray-300">shopping_cart</span>
+          </button>
+          <button class="text-gray-600 dark:text-gray-300 hover:text-primary" id="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="material-icons text-3xl">menu</span>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden pb-6">
+        <div class="flex flex-col gap-3 text-sm">
+          <a class="py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10" href="#top">Home</a>
+          <a class="py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10" href="#menu">Menu</a>
+          <a class="py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10" href="#services">Services</a>
+          <a class="py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10" href="#reviews">Reviews</a>
+          <div class="flex items-center gap-3 pt-2">
+            <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition" id="theme-toggle-mobile" aria-label="Toggle theme">
+              <span class="material-icons text-gray-600 dark:text-gray-300">dark_mode</span>
+            </button>
+            <a class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full font-medium transition shadow-lg" href="#newsletter">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-5 dark:opacity-10 pointer-events-none">
+      <h1 class="font-display font-bold text-[15rem] leading-none text-right -mr-20 text-primary select-none">Coffee</h1>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+          <h1 class="font-display text-5xl lg:text-7xl font-bold leading-tight text-text-light dark:text-white">
+            Discover The <span class="text-primary italic">Art</span><br />
+            Of Perfect Coffee.
+          </h1>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-lg leading-relaxed">
+            Experience the difference as we meticulously select and roast the finest beans to create a truly unforgettable cup of coffee. Join us on a journey of taste.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a class="bg-primary text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-glow hover:scale-105 transition-all flex items-center gap-2" href="#menu">
+              Order Now <span class="material-icons text-sm">arrow_outward</span>
+            </a>
+            <a class="border border-primary text-primary dark:text-secondary dark:border-secondary px-8 py-3 rounded-full font-semibold hover:bg-primary/5 dark:hover:bg-secondary/10 transition flex items-center gap-2" href="#menu">
+              Explore Menu <span class="material-icons text-sm">restaurant_menu</span>
+            </a>
+          </div>
+          <div class="pt-8 flex gap-12 border-t border-gray-200 dark:border-white/10">
+            <div>
+              <p class="font-display font-bold text-3xl text-primary">1K+</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Reviews</p>
+            </div>
+            <div>
+              <p class="font-display font-bold text-3xl text-primary">3K+</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Best Sell</p>
+            </div>
+            <div>
+              <p class="font-display font-bold text-3xl text-primary">150K+</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Menu Items</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl dark:from-primary/20"></div>
+          <img alt="Cup of coffee with splash" class="relative z-10 w-full drop-shadow-2xl rounded-2xl transform rotate-2 hover:rotate-0 transition duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC315OUAygQ47ZBTJhA18p0J-Ke-ScOGHNaI3A-58eBKdAmOYd0Rh6OWdae7K4YBhpK29kpHlepuGmegn8kgNaCCNWA9G9xRrF_tFJ1yVCifWqrWicmW_JcMme3C7TD-VzTNkVJo_tR8dnjbdPlE8cOJqIdlXzS7SkHrCb9G18E8gHxODWNX79Ay4jGMoIms07EdLofuA4A4i6VQ6MuI0HNuSxR-mMAxqsqZsfL9iXD_8Fn0tiMkH0xg4ZnpcCiIO1odEq4gqIi7qvo" />
+          <div class="absolute -bottom-6 -left-6 z-20 bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-soft flex items-center gap-3 border border-gray-100 dark:border-white/5 max-w-xs animate-float-slow">
+            <div class="bg-primary/10 p-2 rounded-full">
+              <span class="material-icons text-primary">local_fire_department</span>
+            </div>
+            <div>
+              <p class="font-bold text-sm dark:text-white">Hot &amp; Fresh</p>
+              <p class="text-xs text-gray-500">Brewed every 30 mins</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="menu" class="py-20 bg-gray-50 dark:bg-[#15100d]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-primary font-bold tracking-wider uppercase text-sm">Special Menu</span>
+        <h2 class="font-display text-4xl font-bold mt-2 text-text-light dark:text-white">Our Delicious Offerings</h2>
+        <div class="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+        <p class="text-gray-500 dark:text-gray-400 mt-5 max-w-xl mx-auto">Filter by category and add your favorites to the cart.</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4 mb-10" id="menu-filters">
+        <button data-filter="all" class="px-6 py-2 rounded-full bg-primary text-white shadow-md transition-transform hover:scale-105">All Coffee</button>
+        <button data-filter="espresso" class="px-6 py-2 rounded-full bg-white dark:bg-card-dark text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 border border-transparent dark:border-white/10 transition">Espresso</button>
+        <button data-filter="iced" class="px-6 py-2 rounded-full bg-white dark:bg-card-dark text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 border border-transparent dark:border-white/10 transition">Iced</button>
+        <button data-filter="pastries" class="px-6 py-2 rounded-full bg-white dark:bg-card-dark text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 border border-transparent dark:border-white/10 transition">Pastries</button>
+      </div>
+
+      <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="espresso">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Americano" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVrr1orxSosKdcyCcTOpfsziQ2K4nsfKlr4On42ctFSD67B5TL2hWWby-2GyPmUmajDKKR2PzOEjKSYM8mCo5V8GB5zsHTVCEgdkBF_bYzKV1e682GpAS8o9zEhhQEuOABft06_r9jaC_Rr0WTLUImx5RMcAXNEHX3_5ktqSEpe55kVu2ZPP2hiRAlw3lV-OYbsuOlCf0NwXnE976VFfRcMuHjLlR4-UJRdPyAm16mjUQ9h81eGiKr0pe3HSgiydbA4dbrNEXwyjGv" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$4.50</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Americano</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star_half</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">A coffee drink typically made from equal parts espresso and hot water. Smooth and rich.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(4.9) 120 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Americano" data-price="4.50">Add to cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="espresso">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Black Coffee" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALo0wpmFqr_hAzm2t4id5zq1g_V9f6YhFHJVRGpw45Evw3MYbRAO5qJGgmOeL2xE9KW_raV3oR9F73qggOMgKPNpDVkgwEGIC683OHJD1UwDV-3cdb97RVbqB_WTZ45JIErswQl_X68viE9LvOkYY2CPhJ7d57H0HDX_ZW1Ipi-o7PTUgMfblCvXaRpup17X3htoYw6L2DqDsEVQIhNYe7aFBzaSbVXNto3z4NTDfZ6-KmGSTDmjKwQ4icc3uC2PQRoJTejXvBCQA3" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$3.00</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Classic Black</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Pure, unfiltered coffee essence. Deep roasted beans brewed to perfection for the purist.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(5.0) 85 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Classic Black" data-price="3.00">Add to cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="espresso">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Mocha" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtm1Xs9SVvdPBN5z5gSiVli6xjQA-f2IuzcJjC-kfztwGUhLXUr8AkM17NXvhzF9Bll_WKkAq8CBXjcEIYyA9TXuGzLZTqVZEdvVkQytSp31tTUwT28SdMZ1spo65IqHDQKjg9PSGbZeqe4ERrA-dW8pAviTbl4kOlsmytOpbZNJ_7BykKSloGOid33qRpaYn52JsF7HsRftMD3XJocJg9wyNjjYlijieHjtqONt7GFcZ4AyJgscUxXThpr9q65c-n721hNppP4lz_" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$5.50</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Creamy Mocha</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star_border</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">A chocolate lover's dream. Espresso mixed with hot chocolate and topped with whipped cream.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(4.7) 200 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Creamy Mocha" data-price="5.50">Add to cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="espresso">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Cappuccino" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5AHJBOU5nUSkhR0y9eJyRj7ehJ-eQrTyf-kQcQMfzsGKezKnn2XB_jp-Ry35YwD3ggYf_0_EOBalt2TSLYJRYZLMqgff6cgLBvnszsP1OI6ljIdc9vSbi-OZ0xm6PEjXaS_oRMtttYIkd9Mrnj7u_5cFsOLdruOFpkAUXwQdS1sXBbwKvhaSMMupV65H9WRTtCMj1cKIHr0xaazN34XAcCvUc_YKaXf2iM4KpKvD8oXtno_2ptO34i3UD8yu0iB3dMV__x1KtB_Vq" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$5.00</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Cappuccino</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Equal parts espresso, steamed milk, and milk foam. The classic Italian breakfast drink.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(4.8) 150 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Cappuccino" data-price="5.00">Add to cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="espresso">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Latte" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxklACbT47tQs7gzNjikNrrw7QTvdZKPjYOnT3n4PPe_VwCI629Tl8TZ5pMcgOcYdXee-5dzrOfPMfaJK7cA826xxK0yGA7YUmrPKTD77hpSOx-MlmuTcJwdbIJqCwGmWCq4Vk0nJMdu3I1ln5iINKwbjZDnlFeKZeCh5ucbIghPZQMjhtj3VVH0tfjj48XQ3GRIufYb3vmYPDnxha71lWVSSsH2e1XBmnJpj0rjIGR2qfGicymSPgJ1tEuAu3xDoQjwbEximBQ7Mn" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$5.20</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Caramel Latte</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star_half</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Espresso with steamed milk and a thin layer of foam, infused with sweet caramel syrup.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(4.9) 310 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Caramel Latte" data-price="5.20">Add to cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="iced">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Cold Brew" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoPsG4z3GMHEr_ss2XGlRTNghGRyG8usLelT-RgEoXBYk8x5pwaOCsSk8jsya12HmSdQ6l8EVeM7IElMobz8ypQDsQ3GL3sk1zkonZBvq9EIsoDSdAl3RNZxeI2LTH-P1TjNioRgaRJIx3L43XeWU_TjGv18CtWfB7GbIapaDB7svDZQeEP7m8IUWxXbPh1s4EB9z8WIdhMljbfTqHl6-be2xo8MhZpMCqWSZUG-0aEceC8bIpZ-kLEoCRkJWRcXCqGWXs2Lxm3aEt" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$4.80</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Nitro Cold Brew</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Slow-steeped cool coffee infused with nitrogen for a creamy, stout-like texture without milk.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(5.0) 95 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Nitro Cold Brew" data-price="4.80">Add to cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="iced">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Iced Latte" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=1400&q=80" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$4.20</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Iced Latte</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star_half</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">A chilled espresso blend with creamy milk and a touch of vanilla, served over ice.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(4.8) 132 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Iced Latte" data-price="4.20">Add to cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="pastries">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Croissant" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://images.unsplash.com/photo-1485745655111-3272a37e76a5?auto=format&fit=crop&w=1400&q=80" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$3.80</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Butter Croissant</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star_border</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Flaky, buttery layers with a crisp golden crust. Perfect alongside your morning brew.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(4.6) 64 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Butter Croissant" data-price="3.80">Add to cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-soft border border-gray-100 dark:border-white/5 transition duration-300" data-category="pastries">
+          <div class="relative h-64 overflow-hidden">
+            <img alt="Cinnamon Roll" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1400&q=80" />
+            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">$4.10</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-display text-xl font-bold text-text-light dark:text-white">Cinnamon Roll</h3>
+              <div class="flex text-yellow-500 text-xs gap-0.5">
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star</span>
+                <span class="material-icons text-sm">star_half</span>
+              </div>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">Soft, spiced cinnamon swirls with a vanilla glaze that melts into every bite.</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">(4.8) 98 Reviews</span>
+              <button class="add-to-cart text-primary hover:text-primary/80 font-bold text-sm uppercase tracking-wide border-b border-primary pb-0.5 transition" data-name="Cinnamon Roll" data-price="4.10">Add to cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <button id="view-all" class="inline-flex items-center gap-2 border border-gray-300 dark:border-white/20 text-gray-600 dark:text-gray-300 px-8 py-3 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 transition">
+          View Full Menu <span class="material-icons text-sm">expand_more</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-primary/90 z-0"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center mix-blend-overlay opacity-30 z-0"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="bg-card-light dark:bg-card-dark rounded-3xl p-8 md:p-12 shadow-2xl grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <span class="bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">Visit Us Today</span>
+          <h2 class="font-display text-4xl font-bold text-text-light dark:text-white">Find Your Nearest Cup</h2>
+          <p class="text-gray-600 dark:text-gray-400 text-lg">
+            Come visit our flagship store downtown. Enjoy free Wi-Fi, comfortable seating, and the aroma of freshly roasted beans.
+          </p>
+          <ul class="space-y-4 pt-4">
+            <li class="flex items-center gap-4">
+              <div class="bg-gray-100 dark:bg-white/5 p-3 rounded-full">
+                <span class="material-icons text-primary">location_on</span>
+              </div>
+              <div>
+                <p class="font-bold text-text-light dark:text-white">123 Coffee Street</p>
+                <p class="text-sm text-gray-500">New York, NY 10012</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-4">
+              <div class="bg-gray-100 dark:bg-white/5 p-3 rounded-full">
+                <span class="material-icons text-primary">schedule</span>
+              </div>
+              <div>
+                <p class="font-bold text-text-light dark:text-white">Mon - Sun: 7am - 8pm</p>
+                <p class="text-sm text-gray-500">Happy Hour: 3pm - 5pm</p>
+              </div>
+            </li>
+          </ul>
+          <div class="pt-6">
+            <button class="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto px-8 py-4 rounded-xl font-bold transition shadow-lg text-center">
+              Get Directions
+            </button>
+          </div>
+        </div>
+        <div class="h-80 lg:h-full min-h-[300px] rounded-2xl overflow-hidden shadow-inner relative group">
+          <img alt="Map Location" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD02CXucstJyFh9NL5mzvs-JdyHgAGsgm85XkMyoLVexJe2Ge_t1SKntK4Zly-jA8VauU7dQYhPXSfepLq2voVVwq9PoYCnoTDg2NfbVOiAnPhRplT-NBj86jwfXt2m9wHKbEyLTeO61a2Lb8qz-WJZQ0CaHYe6lsTAxjXZ-__3m8SUC7mGDpr6v0eIKv3XnQsEwA51mcXTN2eZMT1hwKmkLf-5kJWjHyUuJihgvHFGeRZCB2mPHGd7JOJZ6Z7I39wVVUFNfMrKfvI2" />
+          <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+            <div class="bg-white p-3 rounded-full shadow-xl animate-bounce">
+              <span class="material-icons text-primary text-3xl">place</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="py-20 bg-background-light dark:bg-background-dark">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-primary font-bold tracking-wider uppercase text-sm">Loved by Locals</span>
+        <h2 class="font-display text-4xl font-bold mt-2 text-text-light dark:text-white">Customer Reviews</h2>
+        <div class="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 rounded-2xl bg-card-light dark:bg-card-dark shadow-soft border border-gray-100 dark:border-white/5">
+          <p class="text-gray-500 dark:text-gray-400 text-sm">"The espresso is unreal. You can taste the freshness in every cup."</p>
+          <div class="mt-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">AS</div>
+            <div>
+              <p class="font-bold text-sm">Alya S.</p>
+              <p class="text-xs text-gray-400">Weekly regular</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-card-light dark:bg-card-dark shadow-soft border border-gray-100 dark:border-white/5">
+          <p class="text-gray-500 dark:text-gray-400 text-sm">"Their cold brew keeps me going. Smooth, no bitterness at all."</p>
+          <div class="mt-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">RM</div>
+            <div>
+              <p class="font-bold text-sm">Raka M.</p>
+              <p class="text-xs text-gray-400">Remote worker</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-card-light dark:bg-card-dark shadow-soft border border-gray-100 dark:border-white/5">
+          <p class="text-gray-500 dark:text-gray-400 text-sm">"Cozy spot with amazing pastries. The croissant sells out fast!"</p>
+          <div class="mt-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">DP</div>
+            <div>
+              <p class="font-bold text-sm">Dian P.</p>
+              <p class="text-xs text-gray-400">Food blogger</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-background-dark text-white pt-20 pb-10 border-t border-white/10" id="newsletter">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-icons text-primary text-3xl">coffee</span>
+            <span class="font-display font-bold text-2xl tracking-wide">The Coffee Cup</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Brewing the best moments since 2010. We are committed to sourcing the highest quality beans and roasting them to perfection.
+          </p>
+          <div class="flex space-x-4 pt-2">
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition" href="#"><i class="text-white text-sm">FB</i></a>
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition" href="#"><i class="text-white text-sm">IG</i></a>
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition" href="#"><i class="text-white text-sm">TW</i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-lg mb-6">Quick Links</h4>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li><a class="hover:text-primary transition" href="#top">Home</a></li>
+            <li><a class="hover:text-primary transition" href="#menu">Our Menu</a></li>
+            <li><a class="hover:text-primary transition" href="#services">About Us</a></li>
+            <li><a class="hover:text-primary transition" href="#newsletter">Contact</a></li>
+            <li><a class="hover:text-primary transition" href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-lg mb-6">Contact Us</h4>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li class="flex items-start gap-3">
+              <span class="material-icons text-primary text-sm mt-0.5">email</span>
+              <span>hello@thecoffeecup.com</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-icons text-primary text-sm mt-0.5">phone</span>
+              <span>+1 (555) 123-4567</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-icons text-primary text-sm mt-0.5">location_on</span>
+              <span>123 Coffee Street, NY</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-lg mb-6">Newsletter</h4>
+          <p class="text-sm text-gray-400 mb-4">Subscribe to get the latest updates and offers.</p>
+          <form class="space-y-2" id="newsletter-form">
+            <input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary text-white placeholder-gray-500" placeholder="Your email address" type="email" required />
+            <button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-lg text-sm transition" type="submit">Subscribe</button>
+            <p id="newsletter-message" class="text-xs text-gray-400 hidden">Thanks! We'll be in touch soon.</p>
+          </form>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <p>© 2023 The Coffee Cup. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a class="hover:text-white transition" href="#">Privacy Policy</a>
+          <a class="hover:text-white transition" href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="cart-overlay" class="fixed inset-0 bg-black/50 hidden"></div>
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-card-light dark:bg-card-dark shadow-2xl border-l border-gray-100 dark:border-white/10 translate-x-full transition-transform duration-300 z-50">
+    <div class="h-full flex flex-col">
+      <div class="p-6 border-b border-gray-100 dark:border-white/10 flex items-center justify-between">
+        <div>
+          <h3 class="font-display text-2xl font-bold">Your Cart</h3>
+          <p class="text-sm text-gray-500">Items added to your order</p>
+        </div>
+        <button id="close-cart" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10" aria-label="Close cart">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+      <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+      <div class="p-6 border-t border-gray-100 dark:border-white/10 space-y-4">
+        <div class="flex items-center justify-between text-sm">
+          <span class="text-gray-500">Subtotal</span>
+          <span id="cart-subtotal" class="font-semibold">$0.00</span>
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <span class="text-gray-500">Estimated Tax</span>
+          <span id="cart-tax" class="font-semibold">$0.00</span>
+        </div>
+        <div class="flex items-center justify-between text-lg font-bold">
+          <span>Total</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+        <button id="checkout" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl transition">Checkout</button>
+        <p id="checkout-message" class="text-xs text-gray-500 hidden">Demo only. No real orders are placed.</p>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const themeToggleMobileBtn = document.getElementById("theme-toggle-mobile");
+    const themeIcons = document.querySelectorAll("#theme-toggle .material-icons, #theme-toggle-mobile .material-icons");
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuFilters = document.getElementById("menu-filters");
+    const menuCards = document.querySelectorAll(".menu-card");
+    const cartButton = document.getElementById("cart-button");
+    const mobileCartButton = document.getElementById("mobile-cart-button");
+    const cartDrawer = document.getElementById("cart-drawer");
+    const cartOverlay = document.getElementById("cart-overlay");
+    const closeCart = document.getElementById("close-cart");
+    const cartItems = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const cartSubtotal = document.getElementById("cart-subtotal");
+    const cartTax = document.getElementById("cart-tax");
+    const cartTotal = document.getElementById("cart-total");
+    const checkoutButton = document.getElementById("checkout");
+    const checkoutMessage = document.getElementById("checkout-message");
+    const newsletterForm = document.getElementById("newsletter-form");
+    const newsletterMessage = document.getElementById("newsletter-message");
+    const viewAllButton = document.getElementById("view-all");
+
+    const cart = new Map();
+
+    const setTheme = (theme) => {
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+        themeIcons.forEach((icon) => (icon.textContent = "light_mode"));
+      } else {
+        document.documentElement.classList.remove("dark");
+        themeIcons.forEach((icon) => (icon.textContent = "dark_mode"));
+      }
+    };
+
+    const storedTheme = localStorage.getItem("color-theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+
+    const toggleTheme = () => {
+      const nextTheme = document.documentElement.classList.contains("dark") ? "light" : "dark";
+      localStorage.setItem("color-theme", nextTheme);
+      setTheme(nextTheme);
+    };
+
+    themeToggleBtn.addEventListener("click", toggleTheme);
+    themeToggleMobileBtn.addEventListener("click", toggleTheme);
+
+    mobileMenuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    menuFilters.addEventListener("click", (event) => {
+      const button = event.target.closest("button");
+      if (!button) return;
+      const filter = button.dataset.filter;
+
+      menuFilters.querySelectorAll("button").forEach((btn) => {
+        btn.classList.remove("bg-primary", "text-white", "shadow-md", "scale-105");
+        btn.classList.add("bg-white", "dark:bg-card-dark", "text-gray-600", "dark:text-gray-300");
+      });
+
+      button.classList.add("bg-primary", "text-white", "shadow-md", "scale-105");
+      button.classList.remove("bg-white", "dark:bg-card-dark", "text-gray-600", "dark:text-gray-300");
+
+      menuCards.forEach((card) => {
+        const isMatch = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("hidden", !isMatch);
+      });
+    });
+
+    const openCart = () => {
+      cartDrawer.classList.remove("translate-x-full");
+      cartOverlay.classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+    };
+
+    const closeCartDrawer = () => {
+      cartDrawer.classList.add("translate-x-full");
+      cartOverlay.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    };
+
+    cartButton?.addEventListener("click", openCart);
+    mobileCartButton?.addEventListener("click", openCart);
+    closeCart.addEventListener("click", closeCartDrawer);
+    cartOverlay.addEventListener("click", closeCartDrawer);
+
+    const updateCartUI = () => {
+      cartItems.innerHTML = "";
+      let subtotal = 0;
+      let count = 0;
+
+      if (cart.size === 0) {
+        cartItems.innerHTML = "<p class=\"text-sm text-gray-500\">Your cart is empty. Add something delicious!</p>";
+      }
+
+      cart.forEach((item) => {
+        subtotal += item.price * item.qty;
+        count += item.qty;
+
+        const row = document.createElement("div");
+        row.className = "flex items-center justify-between gap-4 p-4 rounded-xl bg-gray-50 dark:bg-[#1f1916]";
+        row.innerHTML = `
+          <div>
+            <p class="font-semibold">${item.name}</p>
+            <p class="text-xs text-gray-500">$${item.price.toFixed(2)} each</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="qty-btn px-2 py-1 rounded bg-white dark:bg-card-dark" data-name="${item.name}" data-action="dec">-</button>
+            <span class="text-sm font-semibold">${item.qty}</span>
+            <button class="qty-btn px-2 py-1 rounded bg-white dark:bg-card-dark" data-name="${item.name}" data-action="inc">+</button>
+          </div>
+        `;
+        cartItems.appendChild(row);
+      });
+
+      cartCount.textContent = count;
+      const tax = subtotal * 0.08;
+      cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      cartTax.textContent = `$${tax.toFixed(2)}`;
+      cartTotal.textContent = `$${(subtotal + tax).toFixed(2)}`;
+    };
+
+    document.querySelectorAll(".add-to-cart").forEach((button) => {
+      button.addEventListener("click", () => {
+        const name = button.dataset.name;
+        const price = Number(button.dataset.price);
+        if (!cart.has(name)) {
+          cart.set(name, { name, price, qty: 1 });
+        } else {
+          cart.get(name).qty += 1;
+        }
+        updateCartUI();
+        openCart();
+      });
+    });
+
+    cartItems.addEventListener("click", (event) => {
+      const btn = event.target.closest(".qty-btn");
+      if (!btn) return;
+      const name = btn.dataset.name;
+      const action = btn.dataset.action;
+      const item = cart.get(name);
+      if (!item) return;
+      if (action === "inc") item.qty += 1;
+      if (action === "dec") item.qty -= 1;
+      if (item.qty <= 0) cart.delete(name);
+      updateCartUI();
+    });
+
+    checkoutButton.addEventListener("click", () => {
+      checkoutMessage.classList.remove("hidden");
+      setTimeout(() => checkoutMessage.classList.add("hidden"), 2500);
+    });
+
+    newsletterForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      newsletterMessage.classList.remove("hidden");
+      newsletterForm.reset();
+      setTimeout(() => newsletterMessage.classList.add("hidden"), 2500);
+    });
+
+    viewAllButton.addEventListener("click", () => {
+      menuFilters.querySelector("[data-filter='all']")?.click();
+      window.scrollTo({ top: document.getElementById("menu").offsetTop - 80, behavior: "smooth" });
+    });
+
+    updateCartUI();
+  </script>
+</body>
+</html>
